@@ -56,6 +56,7 @@ Clone the repository
 
 bash
 git clone https://github.com/your-username/your-repo-name.git
+
 cd your-repo-name
 Create environment and install dependencies
 
@@ -75,7 +76,7 @@ bash
 python app.py
 or (if configured)
 flask --app app run
-Open http://127.0.0.1:5000 in the browser to use the web interface.​
+Open http://127.0.0.1:5500 in the browser to use the web interface.​
 
 ## Implementation Steps (Summary)
 Designed ISL vocabulary and collected gesture videos for each word.
