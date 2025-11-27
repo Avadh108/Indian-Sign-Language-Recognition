@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ISL Comet | Neural Sign Language Translation</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Iceland&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="static/style.css">
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="logo">
+            <span class="logo-ai">ISL</span>
+            <span class="logo-ai">TRANSLATION</span>
+        </div>
+        <div class="status-indicator">
+            <div class="status-dot"></div>
+            <span class="status-text">SYSTEM ACTIVE</span>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="hero" id="home">
+        <div class="hero-content">
+            <div class="hero-text">
+                <h1>
+                    <span class="hero-title-main">REAL-TIME</span>
+                    <span class="hero-title-accent">SIGN LANGUAGE</span>
+                    <span class="hero-title-main">TRANSLATION</span>
+                </h1>
+
+                <!-- <p>Advanced neural network architecture with real-time hand landmark detection, gesture recognition, and sentence formation for Indian Sign Language Translation.</p> -->
+
+                <div class="cta-buttons">
+                    <a href="#translate" class="btn btn-primary">
+                        <i class="fas fa-play"></i>
+                        START TRANSLATION
+                    </a>
+                    <a href="#history" class="btn btn-secondary">
+                        <i class="fas fa-history"></i>
+                        VIEW HISTORY
+                    </a>
+                </div>
+            </div>
+
+            <div style="text-align: center; color: var(--neon-blue); font-size: 20rem; opacity: 0.4;">
+                <i class="fas fa-hand-paper"></i>
+            </div>
+        </div>
+    </section>
+
+    <!-- Main Translation Section -->
+    <section class="app-section" id="translate">
+        <h2 class="section-title">TRANSLATION ENGINE</h2>
+
+        <div class="mode-selector">
+            <button class="mode-btn active" onclick="switchMode('camera')">
+                <i class="fas fa-camera"></i> LIVE CAMERA
+            </button>
+            <button class="mode-btn" onclick="switchMode('upload')">
+                <i class="fas fa-upload"></i> UPLOAD IMAGE
+            </button>
+        </div>
+
+        <div class="app-container">
+            <!-- Video/Camera Section -->
+            <div class="video-section">
+                <h3><i class="fas fa-video"></i> INPUT CAPTURE</h3>
+
+                <div class="video-container" id="videoContainer">
+                    <video id="webcam" autoplay playsinline></video>
+                    <canvas id="canvas" style="display: none;"></canvas>
+                    <div class="recording-indicator" style="display: none;" id="recordingInd">
+                        <div class="record-dot"></div>
+                        <span>LIVE</span>
+                    </div>
+                </div>
+
+                <div class="upload-zone" id="uploadZone" style="display: none;">
+                    <i class="fas fa-cloud-upload-alt"></i>
+                    <p>Drag & drop image or click to select</p>
+                    <input type="file" id="imageInput" accept="image/*">
+                </div>
+
+                <div class="camera-controls">
+                    <button onclick="startCamera()" id="startCameraBtn">
+                        <i class="fas fa-play"></i> START CAMERA
+                    </button>
+                    <button onclick="stopCamera()" id="stopCameraBtn" style="display: none;">
+                        <i class="fas fa-stop"></i> STOP
+                    </button>
+                    <button onclick="captureFrame()">
+                        <i class="fas fa-camera"></i> CAPTURE
+                    </button>
+                </div>
+            </div>
+
+            <!-- Prediction Display -->
+            <div class="prediction-section">
+                <h3><i class="fas fa-brain"></i> NEURAL PROCESSING</h3>
+
+                <div class="prediction-display">
+                    <div>
+                        <div class="predicted-word" id="predictedWord">WAITING</div>
+                        <div class="confidence-bar">
+                            <div class="confidence-fill" id="confidenceFill"></div>
+                        </div>
+                        <div class="confidence-text">
+                            Confidence: <span id="confidenceText">0%</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="buffer-progress">
+                    <div class="buffer-label">Frame Buffer: <span id="bufferStatus">0/10</span></div>
+                    <div class="buffer-bar">
+                        <div class="buffer-fill" id="bufferFill"></div>
+                    </div>
+                </div>
+
+                <h3 style="margin-top: 2rem; margin-bottom: 1rem;"><i class="fas fa-list"></i> WORD BUFFER</h3>
+                <div class="word-buffer-display" id="wordBuffer">
+                    <span class="empty-message">Words will appear here...</span>
+                </div>
+
+                <div class="action-buttons" style="margin-top: 2rem;">
+                    <button class="action-btn primary" onclick="formSentence()" id="formSentenceBtn" disabled>
+                        <i class="fas fa-check"></i> FORM SENTENCE
+                    </button>
+                    <button class="action-btn" onclick="removeLastWord()" id="removeLastBtn" disabled>
+                        <i class="fas fa-trash"></i> REMOVE LAST
+                    </button>
+                    <button class="action-btn" onclick="resetAll()">
+                        <i class="fas fa-redo"></i> RESET
+                    </button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Sentence Output -->
+    <section class="output-section">
+        <h2 class="section-title">TRANSLATED SENTENCE</h2>
+        <div class="sentence-box">
+            <div class="sentence-text empty" id="sentenceOutput">
+                Grammatically correct sentence will appear here...
+            </div>
+        </div>
+    </section>
+
+    <!-- History Section -->
+    <section class="history-section" id="history">
+        <h2 class="section-title">SESSION HISTORY</h2>
+        <div class="history-grid" id="historyGrid">
+            <div style="grid-column: 1 / -1; text-align: center; color: var(--steel);">
+                No translations yet...
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <p>ISL V1.0 | NEURAL TRANSLATION ENGINE</p>
+        <p>&copy; INDIAN SIGN LANGUAGE RECOGNITION | ALL SYSTEMS OPERATIONAL</p>
+    </footer>
+
+    <script src="static/script.js"></script>
+</body>
+</html>
