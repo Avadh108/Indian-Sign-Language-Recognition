@@ -1,5 +1,4 @@
-#**ANUVAAD - Indian-Sign-Language-Recognition**
-
+#ANUVAAD - Indian-Sign-Language-Recognition
 Word Level Indian Sign Language Recognition using CNN-LSTM along with sentence formation.
 ANUVAAD is a Flask-based web application that translates Indian Sign Language gestures into English words and sentences using computer vision and deep learning.
 The project combines hand-landmark detection, a CNN–LSTM model, and a grammar-correction pipeline to generate meaningful English output from ISL signs.​
