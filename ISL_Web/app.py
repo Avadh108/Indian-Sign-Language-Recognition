@@ -347,6 +347,6 @@ if __name__ == '__main__':
     if initialize_models():
         print("\n🚀 Server starting...")
         print("📱 Open http://localhost:5500 in your browser\n")
-        app.run(debug=True, host='127.0.0.1', port=5500, use_reloader=False)
+        app.run(debug=True, host='0.0.0.0', port=port, use_reloader=False)
     else:
         print("❌ Failed to initialize models. Server not started.")
