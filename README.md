@@ -55,9 +55,9 @@ Predicted words are appended to a sentence buffer and passed through the grammar
 Clone the repository
 
 bash
-git clone https://github.com/your-username/your-repo-name.git
+git clone https://github.com/Avadh108/Indian-Sign-Language-Recognition.git
 
-cd your-repo-name
+cd Indian-Sign-Language-Recognition
 Create environment and install dependencies
 
 bash
@@ -68,7 +68,6 @@ source venv/bin/activate
 on Windows: venv\Scripts\activate
 
 pip install -r requirements.txt
-(Requirements should include flask, tensorflow, mediapipe, opencv-python, numpy, etc.)​
 
 ### Place model files
 
@@ -78,8 +77,6 @@ Copy best_model.h5 and word_mapping.json into the models/ folder if they are not
 
 bash
 python app.py
-or (if configured)
-flask --app app run
 Open http://127.0.0.1:5500 in the browser to use the web interface.​
 
 ## Implementation Steps (Summary)
