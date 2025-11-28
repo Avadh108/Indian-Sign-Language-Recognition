@@ -309,7 +309,7 @@ def initialize_models():
             return False
 
         print("📦 Loading Keras model...")
-        model = keras.models.load_model('models/best_model.h5')
+        model = keras.models.load_model('models/best_model.h5', compile=False)
         print("✓ Model loaded")
 
         print("📋 Loading word mapping...")
